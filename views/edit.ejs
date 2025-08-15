@@ -1,0 +1,19 @@
+<% include ./partials/header.ejs %>
+
+<div class="w-full bg-center bg-cover h-screen flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1472289065668-ce650ac443d2?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
+    <div class="w-[30vw] bg-zinc-100 px-12 py-5 rounded-md">
+
+        <h1 class="text-2xl leading-none text-center font-semibold text-zinc-700 tracking-tighter capitalize">Edit Profile</h1>
+        <form action="/update-profile" method="post" class="mt-2">
+            <input class="border-2 rounded-xl block w-full mt-2 px-3 py-2 mb-2" placeholder="User Name" type="text" name="username" value="<%= user.username %>" required>
+            <input class="border-2 rounded-xl block w-full mt-2 px-3 py-2 mb-2" placeholder="Full Name" type="text" name="fullname" value="<%= user.name %>" required>
+            <input class="border-2 rounded-xl block w-full mt-2 px-3 py-2 mb-2" placeholder="Email" type="email" name="email" value="<%= user.email %>" required>
+            <input class="border-2 rounded-xl block w-full mt-2 px-3 py-2 mb-2" placeholder="Contact" type="text" name="contact" value="<%= user.contact %>" required>
+            <!-- Add more fields as needed -->
+
+            <button class="border-2 rounded-full block w-full mt-2 px-3 py-2 bg-red-600 text-white rounded-full" type="submit">Update Profile</button>
+        </form>
+    </div>
+</div>
+
+<% include ./partials/footer.ejs %>
