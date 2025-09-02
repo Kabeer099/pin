@@ -1,65 +1,41 @@
 <% include ./partials/header.ejs %>
 
-<!-- Optional inline CSS for masonry -->
-<style>
-  .masonry {
-    column-count: 4;
-    column-gap: 1rem;
-  }
-  .masonry-item {
-    break-inside: avoid;
-    margin-bottom: 1rem;
-  }
-  .card {
-    border-radius: 0.75rem;
-    overflow: hidden;
-    background: #1f2937; /* tailwind's gray-800 look */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
-  .card img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
+<div class="p-4 flex flex-wrap items-start  bg-black w-full min-h-screen">
+  <% posts.forEach(function(elem){ %>
+    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-zinc-500 rounded-lg max-w-xs shadow-lg group">
+      <!-- Decorative Background SVG -->
+      <svg class="absolute bottom-0 left-0 mb-8 scale-150 group-hover:scale-[1.65] transition-transform"
+        viewBox="0 0 375 283" fill="none" style="opacity: 0.1;">
+        <rect x="159.52" y="175" width="152" height="152" rx="8"
+          transform="rotate(-45 159.52 175)" fill="white" />
+        <rect y="107.48" width="152" height="152" rx="8"
+          transform="rotate(-45 0 107.48)" fill="white" />
+      </svg>
 
-  @media (max-width: 1200px) {
-    .masonry { column-count: 3; }
-  }
-  @media (max-width: 900px) {
-    .masonry { column-count: 2; }
-  }
-  @media (max-width: 600px) {
-    .masonry { column-count: 1; }
-  }
+  <!-- Product Image -->
+<div class="relative pt-10 px-10 flex items-center justify-center group-hover:scale-105 transition-transform">
+  <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3"
+    style="background: radial-gradient(black, transparent 60%);
+    transform: rotate3d(0,0,1,20deg) scale3d(1,0.6,1);
+    opacity: 0.2;">
+  </div>
+  <a href="/show/posts/<%= elem._id %>" class="w-full">
+    <img 
+      class="relative w-full h-100 object-cover rounded-lg"
+      src="/images/uploads/<%= elem.image %>"
+      alt="<%= elem.title %>">
+  </a>
+</div>
 
-  /* Optional: title ellipsis if long */
-  .card-title {
-    color: #fff;
-    margin: 0;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
-    line-height: 1.2;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-</style>
 
-<div class="w-full min-h-screen bg-zinc-800 px-10 py-8 text-white">
-  <div class="masonry">
-    <% posts.forEach(function(elem){ %>
-      <div class="masonry-item">
-        <div class="card">
-          <a href="/show/posts/<%= elem._id %>">
-            <img src="/images/uploads/<%= elem.image %>" alt="<%= elem.title %>">
-          </a>
-          <div class="p-2">
-            <h3 class="card-title"><%= elem.title %></h3>
-          </div>
+      <!-- Product Details -->
+      <div class="relative text-white px-6 pb-6 mt-6">
+        <div class="flex justify-between">
+          <span class="block font-semibold text-xl"><%= elem.title %></span>
         </div>
       </div>
-    <%}) %>
-  </div>
+    </div>
+  <% }) %>
 </div>
 
 <% include ./partials/footer.ejs %>
