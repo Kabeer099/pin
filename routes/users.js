@@ -1,26 +1,23 @@
 const mongoose = require("mongoose");
-const plm = require('passport-local-mongoose');
+const plm = require("passport-local-mongoose");
 
-mongoose.connect("mongodb+srv://kabeerahmed0120:kabeerahmed0120@cluster0.3hluiqs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
-
-const userSchema = mongoose.Schema({
-  username:String,
-  name:String,
-  email:String,
-  password:String,
-  profileImage:String,
-  contact:Number,
-  board:{
+const userSchema = new mongoose.Schema({
+  username: String,
+  name: String,
+  email: String,
+  password: String,
+  profileImage: String,
+  contact: Number,
+  board: {
     type: Array,
     default: []
   },
-  posts:[{
+  posts: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "post"
-},]
+  }]
 });
 
 userSchema.plugin(plm);
-
 
 module.exports = mongoose.model("user", userSchema);
