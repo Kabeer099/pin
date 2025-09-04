@@ -10,40 +10,38 @@
 <body>
 <% if(nav === true){ %>
 
-  <!-- Navbar -->
-  <nav class="w-full px-6 sm:px-10 py-3 flex justify-between bg-zinc-800 text-white items-center">
+  <!-- Top Navbar (Desktop Only) -->
+  <nav class="hidden md:flex w-full px-10 py-3 justify-between bg-zinc-800 text-white items-center">
     <!-- Logo -->
     <h3 class="text-lg font-semibold">Pinterest</h3>
 
     <!-- Desktop Links -->
-    <div class="hidden md:flex gap-6 items-center">
+    <div class="flex gap-6 items-center">
       <a href="/profile" class="hover:text-red-400">Profile</a>
       <a href="/show/posts" class="hover:text-red-400">My Posts</a>
       <a href="/feed" class="hover:text-red-400">Feed</a>
       <a href="/logout" class="px-3 py-2 rounded-lg bg-red-700 hover:bg-red-800">Logout</a>
     </div>
-
-    <!-- Mobile Menu Button -->
-    <button id="menu-btn" class="block md:hidden text-2xl">
-      <i class="ri-menu-line"></i>
-    </button>
   </nav>
 
-  <!-- Mobile Menu (hidden by default) -->
-  <div id="mobile-menu" class="hidden flex-col bg-zinc-700 text-white px-6 py-4 space-y-3 md:hidden">
-    <a href="/profile" class="block hover:text-red-400">Profile</a>
-    <a href="/show/posts" class="block hover:text-red-400">My Posts</a>
-    <a href="/feed" class="block hover:text-red-400">Feed</a>
-    <a href="/logout" class="block px-3 py-2 rounded-lg bg-red-700 hover:bg-red-800 text-center">Logout</a>
-  </div>
-
-  <script>
-    // Toggle mobile menu
-    const menuBtn = document.getElementById("menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-  </script>
+  <!-- Bottom Navigation (Mobile Only) -->
+  <nav class="fixed bottom-0 left-0 w-full bg-zinc-800 text-white flex justify-around items-center py-3 md:hidden shadow-lg z-50">
+    <a href="/feed" class="flex flex-col items-center text-sm">
+      <i class="ri-home-4-line text-xl"></i>
+      <span>Feed</span>
+    </a>
+    <a href="/show/posts" class="flex flex-col items-center text-sm">
+      <i class="ri-image-line text-xl"></i>
+      <span>Posts</span>
+    </a>
+    <a href="/profile" class="flex flex-col items-center text-sm">
+      <i class="ri-user-line text-xl"></i>
+      <span>Profile</span>
+    </a>
+    <a href="/logout" class="flex flex-col items-center text-sm">
+      <i class="ri-logout-box-r-line text-xl"></i>
+      <span>Logout</span>
+    </a>
+  </nav>
 
 <% } %>

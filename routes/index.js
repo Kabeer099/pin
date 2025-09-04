@@ -40,20 +40,35 @@ router.get("/show/posts", isLoggedin, async function (req, res, next) {
   res.render("show", { user, nav: true });
 });
 /* GET a single Post. */
+/* GET a single Post. */
 router.get("/show/posts/:id", isLoggedin, async function (req, res, next) {
   try {
     const postId = req.params.id;
+
+    // 1) Current post + user
     const post = await postModel.findById(postId).populate("user");
-    if (!post) {
-      return res.status(404).send("Post not found");
+    if (!post) return res.status(404).send("Post not found");
+
+    // 2) 4–5 random posts (current post ko exclude)
+    let randomPosts = [];
+    try {
+      randomPosts = await postModel.aggregate([
+        { $match: { _id: { $ne: post._id } } },
+        { $sample: { size: 5 } },
+      ]);
+    } catch (err) {
+      console.error("Error fetching random posts:", err);
+      randomPosts = []; // fallback
     }
 
-    res.render("singlepost", { post, nav: true }); // Assuming you have a "singlepost" view template
+    // 3) View ko sab variables pass karo
+    res.render("singlepost", { post, randomPosts, nav: true });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
 });
+
 /* GET feed page. */
 router.get("/feed", isLoggedin, async function (req, res, next) {
   const user = await userModel.findOne({ username: req.session.passport.user }).populate("posts");

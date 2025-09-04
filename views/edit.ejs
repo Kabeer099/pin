@@ -1,19 +1,56 @@
 <% include ./partials/header.ejs %>
 
-<div class="w-full bg-center bg-cover h-screen flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1472289065668-ce650ac443d2?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
-    <div class="w-[30vw] bg-zinc-100 px-12 py-5 rounded-md">
+<div class="w-full bg-center bg-cover min-h-screen flex items-center justify-center px-4 sm:px-6 bg-[url('https://images.unsplash.com/photo-1472289065668-ce650ac443d2?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
+  <div class="w-full max-w-md bg-zinc-100 px-6 sm:px-8 py-6 rounded-lg shadow-md">
+    
+    <h1 class="text-xl sm:text-2xl text-center font-semibold text-zinc-700 tracking-tight capitalize">
+      Edit Profile
+    </h1>
 
-        <h1 class="text-2xl leading-none text-center font-semibold text-zinc-700 tracking-tighter capitalize">Edit Profile</h1>
-        <form action="/update-profile" method="post" class="mt-2">
-            <input class="border-2 rounded-xl block w-full mt-2 px-3 py-2 mb-2" placeholder="User Name" type="text" name="username" value="<%= user.username %>" required>
-            <input class="border-2 rounded-xl block w-full mt-2 px-3 py-2 mb-2" placeholder="Full Name" type="text" name="fullname" value="<%= user.name %>" required>
-            <input class="border-2 rounded-xl block w-full mt-2 px-3 py-2 mb-2" placeholder="Email" type="email" name="email" value="<%= user.email %>" required>
-            <input class="border-2 rounded-xl block w-full mt-2 px-3 py-2 mb-2" placeholder="Contact" type="text" name="contact" value="<%= user.contact %>" required>
-            <!-- Add more fields as needed -->
+    <form action="/update-profile" method="post" class="mt-4 space-y-3">
+      <!-- Username -->
+      <input 
+        class="border-2 rounded-xl w-full px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-600" 
+        placeholder="User Name" 
+        type="text" 
+        name="username" 
+        value="<%= user.username %>" 
+        required>
 
-            <button class="border-2 rounded-full block w-full mt-2 px-3 py-2 bg-red-600 text-white rounded-full" type="submit">Update Profile</button>
-        </form>
-    </div>
+      <!-- Full Name -->
+      <input 
+        class="border-2 rounded-xl w-full px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-600" 
+        placeholder="Full Name" 
+        type="text" 
+        name="fullname" 
+        value="<%= user.name %>" 
+        required>
+
+      <!-- Email -->
+      <input 
+        class="border-2 rounded-xl w-full px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-600" 
+        placeholder="Email" 
+        type="email" 
+        name="email" 
+        value="<%= user.email %>" 
+        required>
+
+      <!-- Contact -->
+      <input 
+        class="border-2 rounded-xl w-full px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-600" 
+        placeholder="Contact" 
+        type="text" 
+        name="contact" 
+        value="<%= user.contact %>" 
+        required>
+
+      <!-- Submit Button -->
+      <button 
+        class="w-full px-3 py-2 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition">
+        Update Profile
+      </button>
+    </form>
+  </div>
 </div>
 
 <% include ./partials/footer.ejs %>
